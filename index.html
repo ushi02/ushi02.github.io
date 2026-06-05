@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Name</title>
+<title>Your Name — Full Stack Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
-/* ─── Reset ─────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
-/* ─── Tokens ─────────────────────────────────── */
 :root {
   --ink:        #111010;
   --ink-mid:    #555250;
@@ -23,15 +21,17 @@ html { scroll-behavior: smooth; }
   --rule:       #e2ddd8;
   --accent:     #c8705a;
   --accent-dim: #e8c4bb;
-
-  --f-serif: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
-  --f-mono:  'DM Mono', 'Courier New', monospace;
-
-  --max: 860px;
-  --pad: clamp(24px, 5vw, 64px);
+  --f-serif:    'Playfair Display', 'Noto Serif JP', Georgia, serif;
+  --f-mono:     'DM Mono', 'Courier New', monospace;
+  --max:        880px;
+  --pad:        clamp(24px, 5vw, 64px);
 }
 
-/* ─── Base ────────────────────────────────────── */
+/* Japanese mode — swap serif font */
+[lang="ja"] {
+  --f-serif: 'Noto Serif JP', Georgia, serif;
+}
+
 body {
   font-family: var(--f-mono);
   font-weight: 300;
@@ -45,14 +45,49 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
-/* ─── Layout shell ────────────────────────────── */
 .shell {
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 var(--pad);
 }
 
-/* ─── Header ──────────────────────────────────── */
+/* ── Language toggle ── */
+.lang-toggle {
+  position: fixed;
+  top: 20px; right: 24px;
+  z-index: 100;
+  display: flex;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+
+.lang-btn {
+  padding: 6px 14px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--ink-light);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+
+.lang-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.lang-btn:not(.active):hover { background: var(--paper-warm); }
+
+/* ── i18n ── */
+[data-en], [data-ja] { display: inline; }
+
+/* ── Header ── */
 header {
   padding: 56px 0 0;
   animation: up 0.7s cubic-bezier(.22,1,.36,1) both;
@@ -64,59 +99,53 @@ header {
   align-items: baseline;
   padding-bottom: 20px;
   border-bottom: 1.5px solid var(--ink);
+  gap: 16px;
 }
 
 .site-name {
   font-family: var(--f-serif);
-  font-size: clamp(28px, 5vw, 42px);
+  font-size: clamp(26px, 5vw, 42px);
   font-weight: 700;
   letter-spacing: -1px;
   line-height: 1;
 }
 
-.site-name em {
-  font-style: italic;
-  color: var(--accent);
-}
+.site-name em { font-style: italic; color: var(--accent); }
 
 .header-meta {
   font-size: 11px;
-  letter-spacing: 2px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
   color: var(--ink-light);
   text-align: right;
-  line-height: 1.6;
+  line-height: 1.7;
+  flex-shrink: 0;
 }
 
-/* ─── Intro band ──────────────────────────────── */
+/* ── Intro ── */
 .intro {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
   border-bottom: 1px solid var(--rule);
   animation: up 0.7s 0.1s cubic-bezier(.22,1,.36,1) both;
 }
 
-@media (max-width: 560px) { .intro { grid-template-columns: 1fr; } }
+@media (max-width: 540px) { .intro { grid-template-columns: 1fr; } }
 
 .intro-cell {
-  padding: 28px 0;
+  padding: 26px 0;
   font-size: 13px;
   color: var(--ink-mid);
   line-height: 1.9;
 }
 
 .intro-cell + .intro-cell {
-  padding-left: 40px;
+  padding-left: 36px;
   border-left: 1px solid var(--rule);
 }
 
-@media (max-width: 560px) {
-  .intro-cell + .intro-cell {
-    padding-left: 0;
-    border-left: none;
-    border-top: 1px solid var(--rule);
-  }
+@media (max-width: 540px) {
+  .intro-cell + .intro-cell { padding-left: 0; border-left: none; border-top: 1px solid var(--rule); }
 }
 
 .intro-cell strong { font-weight: 400; color: var(--ink); }
@@ -131,17 +160,12 @@ header {
   animation: pulse 2.5s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
-}
-
-/* ─── Section label ───────────────────────────── */
+/* ── Section head ── */
 .section-head {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 40px 0 28px;
+  gap: 14px;
+  padding: 44px 0 26px;
 }
 
 .section-label {
@@ -149,16 +173,32 @@ header {
   letter-spacing: 3.5px;
   text-transform: uppercase;
   color: var(--ink-light);
+  white-space: nowrap;
+}
+
+.section-rule { flex: 1; height: 1px; background: var(--rule); }
+
+/* ── Section badge (Solo / Team) ── */
+.section-badge {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 2px;
   font-weight: 400;
 }
 
-.section-rule {
-  flex: 1;
-  height: 1px;
-  background: var(--rule);
+.badge-solo {
+  border: 1px solid var(--accent-dim);
+  color: var(--accent);
 }
 
-/* ─── Project grid ────────────────────────────── */
+.badge-team {
+  border: 1px solid #b5c9e8;
+  color: #3a6fa8;
+}
+
+/* ── Projects grid ── */
 .projects {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -167,19 +207,20 @@ header {
   border: 1px solid var(--rule);
 }
 
-@media (max-width: 560px) { .projects { grid-template-columns: 1fr; } }
+@media (max-width: 540px) { .projects { grid-template-columns: 1fr; } }
 
 .project {
   background: var(--paper);
-  padding: 28px 28px 24px;
+  padding: 28px 26px 24px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: background 0.18s;
   position: relative;
   overflow: hidden;
+  transition: background 0.18s;
 }
 
+/* left accent bar */
 .project::after {
   content: '';
   position: absolute;
@@ -189,10 +230,12 @@ header {
   transition: height 0.25s cubic-bezier(.22,1,.36,1);
 }
 
+.project.team-project::after { background: #3a6fa8; }
+
 .project:hover { background: var(--paper-warm); }
 .project:hover::after { height: 100%; }
 
-/* Featured spans full width */
+/* Featured wide card */
 .project.wide {
   grid-column: 1 / -1;
   display: grid;
@@ -201,7 +244,7 @@ header {
   align-items: start;
 }
 
-@media (max-width: 560px) { .project.wide { grid-template-columns: 1fr; } }
+@media (max-width: 540px) { .project.wide { grid-template-columns: 1fr; } }
 
 .project-left { display: flex; flex-direction: column; gap: 10px; }
 
@@ -209,20 +252,40 @@ header {
   font-size: 10px;
   letter-spacing: 2px;
   color: var(--ink-light);
-  font-weight: 400;
 }
+
+.project-num .kind-tag {
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 2px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  vertical-align: 1px;
+}
+
+.kind-solo { background: #fdf0ed; color: var(--accent); border: 1px solid var(--accent-dim); }
+.kind-team { background: #edf3fb; color: #3a6fa8; border: 1px solid #b5c9e8; }
 
 .project-name {
   font-family: var(--f-serif);
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
   letter-spacing: -0.5px;
-  line-height: 1.2;
+  line-height: 1.25;
   color: var(--ink);
   transition: color 0.18s;
 }
 
 .project:hover .project-name { color: var(--accent); }
+.project.team-project:hover .project-name { color: #3a6fa8; }
+
+.project-role {
+  font-size: 11px;
+  color: var(--ink-light);
+  letter-spacing: 0.5px;
+  font-style: italic;
+}
 
 .project-desc {
   font-size: 12.5px;
@@ -235,7 +298,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .tech-pill {
@@ -248,15 +311,13 @@ header {
   transition: border-color 0.18s, color 0.18s;
 }
 
-.project:hover .tech-pill {
-  border-color: var(--accent-dim);
-  color: var(--accent);
-}
+.project:hover .tech-pill { border-color: var(--accent-dim); color: var(--accent); }
+.project.team-project:hover .tech-pill { border-color: #b5c9e8; color: #3a6fa8; }
 
 .project-links {
   display: flex;
   gap: 16px;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .proj-link {
@@ -272,23 +333,18 @@ header {
 
 .proj-link svg {
   width: 10px; height: 10px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   transition: transform 0.18s;
 }
 
 .proj-link:hover { color: var(--accent); }
-.proj-link:hover svg { transform: translate(2px, -2px); }
+.proj-link:hover svg { transform: translate(2px,-2px); }
 
-/* Wide project right side */
+/* Wide card right col */
 .project-right {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
   gap: 16px;
 }
 
@@ -298,7 +354,7 @@ header {
   font-size: 13px;
   color: var(--ink-light);
   line-height: 1.9;
-  padding: 16px;
+  padding: 14px 16px;
   border-left: 2px solid var(--accent-dim);
   background: var(--paper-warm);
   transition: border-color 0.18s;
@@ -306,56 +362,41 @@ header {
 
 .project:hover .project-highlight { border-color: var(--accent); }
 
-.project-stat-row {
-  display: flex;
-  gap: 24px;
-}
-
-.project-stat { display: flex; flex-direction: column; gap: 2px; }
-
-.stat-val {
-  font-family: var(--f-serif);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -1px;
-}
-
-.stat-label {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.project-members {
+  font-size: 11px;
   color: var(--ink-light);
+  line-height: 1.8;
 }
 
-/* ─── About strip ────────────────────────────── */
+.project-members strong { color: var(--ink-mid); font-weight: 400; }
+
+/* ── About strip ── */
 .about-strip {
   margin-top: 1px;
   background: var(--ink);
   color: var(--paper);
-  padding: 36px 40px;
+  padding: 34px 40px;
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 40px;
+  gap: 36px;
   align-items: center;
 }
 
-@media (max-width: 640px) {
-  .about-strip { grid-template-columns: 1fr; gap: 20px; padding: 28px; }
+@media (max-width: 620px) {
+  .about-strip { grid-template-columns: 1fr; gap: 18px; padding: 26px 24px; }
 }
 
 .about-title {
   font-family: var(--f-serif);
-  font-size: clamp(18px, 3vw, 26px);
+  font-size: clamp(17px, 3vw, 24px);
   font-weight: 400;
   font-style: italic;
-  color: var(--paper);
   white-space: nowrap;
 }
 
 .about-text {
   font-size: 12.5px;
-  color: rgba(250,249,247,0.55);
+  color: rgba(250,249,247,0.52);
   line-height: 1.9;
   font-weight: 300;
 }
@@ -366,8 +407,8 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
-  border: 1px solid rgba(255,255,255,0.25);
+  padding: 9px 18px;
+  border: 1px solid rgba(255,255,255,0.22);
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -378,8 +419,8 @@ header {
 
 .about-cta:hover { background: var(--accent); border-color: var(--accent); }
 
-/* ─── Contact ────────────────────────────────── */
-.contact-section { padding: 48px 0 0; }
+/* ── Contact ── */
+.contact-section { padding: 44px 0 0; }
 
 .contact-grid {
   display: grid;
@@ -389,14 +430,14 @@ header {
   border: 1px solid var(--rule);
 }
 
-@media (max-width: 560px) { .contact-grid { grid-template-columns: 1fr; } }
+@media (max-width: 540px) { .contact-grid { grid-template-columns: 1fr; } }
 
 .contact-cell {
   background: var(--paper);
-  padding: 24px 24px 22px;
+  padding: 22px 22px 20px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   transition: background 0.18s;
 }
 
@@ -411,8 +452,7 @@ header {
 
 .contact-value {
   font-family: var(--f-serif);
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 14px;
   color: var(--ink);
   word-break: break-all;
   transition: color 0.18s;
@@ -420,17 +460,16 @@ header {
 
 .contact-cell:hover .contact-value { color: var(--accent); }
 
-/* ─── Footer ─────────────────────────────────── */
+/* ── Footer ── */
 footer {
-  margin-top: 48px;
-  padding: 20px 0 48px;
+  margin-top: 44px;
+  padding: 18px 0 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid var(--rule);
   font-size: 11px;
   color: var(--ink-light);
-  letter-spacing: 0.5px;
 }
 
 .footer-mark {
@@ -440,10 +479,14 @@ footer {
   color: var(--ink-mid);
 }
 
-/* ─── Animations ─────────────────────────────── */
+/* ── Animations ── */
 @keyframes up {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
 .fade-in {
@@ -453,52 +496,75 @@ footer {
 }
 .fade-in.visible { opacity: 1; transform: none; }
 
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--paper); }
 ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
 </style>
 </head>
 <body>
 
+<!-- ── Language toggle ── -->
+<div class="lang-toggle" role="group" aria-label="Language switcher">
+  <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn"        data-lang="ja" onclick="setLang('ja')">JA</button>
+</div>
+
 <div class="shell">
 
-  <!-- Header -->
+  <!-- ── Header ── -->
   <header>
     <div class="header-inner">
-      <div class="site-name">Your <em>Name</em></div>
+      <div class="site-name">
+        Your <em>Name</em>
+      </div>
       <div class="header-meta">
-        Developer &amp; Builder<br>
-        Based in City, Country
+        <span data-en>Full Stack Developer<br>University Name · CS / [Your Major]</span>
+        <span data-ja>フルスタックエンジニア<br>〇〇大学 · 〇〇学部</span>
       </div>
     </div>
+
     <div class="intro">
       <div class="intro-cell">
         <span class="status-dot"></span>
-        <strong>Open to opportunities</strong> — 正在寻找实习 / 全职机会<br>
-        做了一些小项目，喜欢把想法变成能跑的东西。
+        <span data-en><strong>Open to opportunities</strong> — seeking internship or full-time roles in full stack development.</span>
+        <span data-ja><strong>求職中</strong> — フルスタック開発のインターンシップ・就職先を探しています。</span>
       </div>
       <div class="intro-cell">
-        Python · JavaScript · React · Node.js<br>
-        喜欢折腾工具，对产品和用户体验也有兴趣。
+        <span data-en>React · Node.js · Python · PostgreSQL · Docker<br>Comfortable across the stack, from UI to deployment.</span>
+        <span data-ja>React · Node.js · Python · PostgreSQL · Docker<br>フロントからデプロイまで幅広く対応できます。</span>
       </div>
     </div>
   </header>
 
-  <!-- Projects -->
+  <!-- ══════════════════════════════════════
+       SOLO PROJECTS
+  ══════════════════════════════════════ -->
   <div class="section-head fade-in">
-    <span class="section-label">Selected Work</span>
+    <span class="section-label" data-en>Solo Projects</span>
+    <span class="section-label" data-ja>個人プロジェクト</span>
     <div class="section-rule"></div>
-    <span class="section-label">2023 — 2025</span>
+    <span class="section-badge badge-solo" data-en>Personal</span>
+    <span class="section-badge badge-solo" data-ja>個人制作</span>
   </div>
 
   <div class="projects fade-in">
 
-    <!-- Featured project -->
-    <a href="https://github.com/yourusername/project-one" class="project wide" target="_blank" rel="noopener">
+    <!-- Solo #1 — featured wide card -->
+    <a href="https://github.com/ushi02/YOUR-REPO-1" class="project wide" target="_blank" rel="noopener">
       <div class="project-left">
-        <span class="project-num">No. 01 · Featured</span>
-        <div class="project-name">项目名称一</div>
-        <p class="project-desc">用一两句话描述这个项目是什么、解决了什么问题。可以提到核心功能，或者你做这个项目的动机是什么。写得具体，比"一个Web应用"有意思得多。</p>
+        <span class="project-num">
+          No. 01
+          <span class="kind-tag kind-solo" data-en>Solo</span>
+          <span class="kind-tag kind-solo" data-ja>個人</span>
+        </span>
+        <div class="project-name">
+          <span data-en>Project Name One</span>
+          <span data-ja>プロジェクト名 一</span>
+        </div>
+        <p class="project-desc">
+          <span data-en>Describe what this project does in 1–2 sentences. What problem does it solve? What's the most interesting part? Be specific — "a web app" is boring, "a tool that does X for Y people" is not.</span>
+          <span data-ja>このプロジェクトが何をするものか1〜2文で説明してください。どんな課題を解決しますか？何が面白い点ですか？具体的に書くと良い印象を与えます。</span>
+        </p>
         <div class="project-tech">
           <span class="tech-pill">React</span>
           <span class="tech-pill">Node.js</span>
@@ -506,110 +572,151 @@ footer {
           <span class="tech-pill">REST API</span>
         </div>
         <div class="project-links">
-          <span class="proj-link">GitHub <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
-          <span class="proj-link">Live Demo <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
+          <span class="proj-link">
+            GitHub
+            <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
+          </span>
+          <span class="proj-link">
+            <span data-en>Live Demo</span>
+            <span data-ja>デモ</span>
+            <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
+          </span>
         </div>
       </div>
       <div class="project-right">
         <div class="project-highlight">
-          "这里写一句让人印象深刻的话，比如这个项目最有趣的地方，或者你从中学到了什么，或者它解决的核心痛点是什么。"
-        </div>
-        <div class="project-stat-row">
-          <div class="project-stat">
-            <span class="stat-val">1k+</span>
-            <span class="stat-label">用户 / 访问量</span>
-          </div>
-          <div class="project-stat">
-            <span class="stat-val">3mo</span>
-            <span class="stat-label">开发周期</span>
-          </div>
-          <div class="project-stat">
-            <span class="stat-val">v2</span>
-            <span class="stat-label">当前版本</span>
-          </div>
+          <span data-en>"Write one sentence that captures the most memorable thing about this project — a technical challenge you solved, an insight you gained, or what makes it unique."</span>
+          <span data-ja>「このプロジェクトで最も印象的なこと、解決した技術的な課題、または得た気づきを一文で表現してください。」</span>
         </div>
       </div>
     </a>
 
-    <!-- Project 2 -->
-    <a href="https://github.com/yourusername/project-two" class="project" target="_blank" rel="noopener">
-      <span class="project-num">No. 02</span>
-      <div class="project-name">项目名称二</div>
-      <p class="project-desc">简短描述这个项目做什么，一两句即可。重点放在它能做什么，或者用了什么有趣的技术。</p>
+    <!-- Solo #2 -->
+    <a href="https://github.com/ushi02/YOUR-REPO-2" class="project" target="_blank" rel="noopener" style="grid-column: 1 / -1;">
+      <span class="project-num">
+        No. 02
+        <span class="kind-tag kind-solo" data-en>Solo</span>
+        <span class="kind-tag kind-solo" data-ja>個人</span>
+      </span>
+      <div class="project-name">
+        <span data-en>Project Name Two</span>
+        <span data-ja>プロジェクト名 二</span>
+      </div>
+      <p class="project-desc">
+        <span data-en>Short description — what it does, what stack you used, and why you built it. 1–2 sentences is plenty.</span>
+        <span data-ja>プロジェクトの概要を1〜2文で。何をするもので、なぜ作ったのかを書いてください。</span>
+      </p>
       <div class="project-tech">
         <span class="tech-pill">Python</span>
         <span class="tech-pill">FastAPI</span>
-        <span class="tech-pill">OpenAI</span>
-      </div>
-      <div class="project-links">
-        <span class="proj-link">GitHub <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
-      </div>
-    </a>
-
-    <!-- Project 3 -->
-    <a href="https://github.com/yourusername/project-three" class="project" target="_blank" rel="noopener">
-      <span class="project-num">No. 03</span>
-      <div class="project-name">项目名称三</div>
-      <p class="project-desc">简短描述这个项目做什么，说说它解决了什么问题，或者有什么技术上值得一提的地方。</p>
-      <div class="project-tech">
-        <span class="tech-pill">TypeScript</span>
-        <span class="tech-pill">Vue 3</span>
-        <span class="tech-pill">Vite</span>
-      </div>
-      <div class="project-links">
-        <span class="proj-link">GitHub <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
-        <span class="proj-link">Demo <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
-      </div>
-    </a>
-
-    <!-- Project 4 -->
-    <a href="https://github.com/yourusername/project-four" class="project" target="_blank" rel="noopener">
-      <span class="project-num">No. 04</span>
-      <div class="project-name">项目名称四</div>
-      <p class="project-desc">简短描述这个项目做什么，可以提到用户、场景，或者你为什么做这个东西。</p>
-      <div class="project-tech">
-        <span class="tech-pill">Go</span>
         <span class="tech-pill">Docker</span>
-        <span class="tech-pill">Redis</span>
       </div>
       <div class="project-links">
-        <span class="proj-link">GitHub <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
-      </div>
-    </a>
-
-    <!-- Project 5 -->
-    <a href="https://github.com/yourusername/project-five" class="project" target="_blank" rel="noopener">
-      <span class="project-num">No. 05</span>
-      <div class="project-name">项目名称五</div>
-      <p class="project-desc">简短描述，一两句就够。说说这个项目的核心功能或者你学到了什么。</p>
-      <div class="project-tech">
-        <span class="tech-pill">Next.js</span>
-        <span class="tech-pill">Tailwind</span>
-        <span class="tech-pill">Prisma</span>
-      </div>
-      <div class="project-links">
-        <span class="proj-link">GitHub <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
-        <span class="proj-link">Demo <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
+        <span class="proj-link">
+          GitHub
+          <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
+        </span>
       </div>
     </a>
 
   </div>
 
-  <!-- About strip -->
+  <!-- ══════════════════════════════════════
+       TEAM PROJECTS
+  ══════════════════════════════════════ -->
+  <div class="section-head fade-in">
+    <span class="section-label" data-en>Team Projects</span>
+    <span class="section-label" data-ja>チームプロジェクト</span>
+    <div class="section-rule"></div>
+    <span class="section-badge badge-team" data-en>Collaborative</span>
+    <span class="section-badge badge-team" data-ja>共同制作</span>
+  </div>
+
+  <div class="projects fade-in">
+
+    <!-- Team #1 — wide card -->
+    <a href="https://github.com/ushi02/YOUR-TEAM-REPO" class="project wide team-project" target="_blank" rel="noopener">
+      <div class="project-left">
+        <span class="project-num">
+          No. 03
+          <span class="kind-tag kind-team" data-en>Team</span>
+          <span class="kind-tag kind-team" data-ja>チーム</span>
+        </span>
+        <div class="project-name">
+          <span data-en>Team Project Name</span>
+          <span data-ja>チームプロジェクト名</span>
+        </div>
+        <p class="project-role">
+          <span data-en>Your role: [e.g. Frontend lead / Backend / Full stack]</span>
+          <span data-ja>担当：[例 フロントエンドリード / バックエンド / フルスタック]</span>
+        </p>
+        <p class="project-desc">
+          <span data-en>Describe the project and what your team built. Then mention your specific contribution — what features did you own? What decisions did you make? Interviewers care about what YOU did inside a team project.</span>
+          <span data-ja>プロジェクトの概要と、チームで何を作ったかを説明してください。次に、あなた自身の貢献を具体的に書いてください。どの機能を担当しましたか？面接官はチームの中であなたが何をしたかを重視します。</span>
+        </p>
+        <div class="project-tech">
+          <span class="tech-pill">Next.js</span>
+          <span class="tech-pill">TypeScript</span>
+          <span class="tech-pill">Prisma</span>
+          <span class="tech-pill">Vercel</span>
+        </div>
+        <div class="project-links">
+          <span class="proj-link">
+            GitHub
+            <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
+          </span>
+          <span class="proj-link">
+            <span data-en>Live Demo</span>
+            <span data-ja>デモ</span>
+            <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
+          </span>
+        </div>
+      </div>
+      <div class="project-right">
+        <div class="project-highlight" style="border-color:#b5c9e8">
+          <span data-en>"What was your specific contribution that you're most proud of? A hard problem you solved, a design decision you drove, or something the team wouldn't have built without you."</span>
+          <span data-ja>「チームの中で最も誇れる自分の貢献を一文で。あなたがいなければできなかったことは何ですか？」</span>
+        </div>
+        <div class="project-members">
+          <strong data-en>Team:</strong>
+          <strong data-ja>チーム：</strong>
+          <span data-en> [N] members · [Course / Hackathon / Side project]</span>
+          <span data-ja>　メンバー [N]人 · [授業 / ハッカソン / 課外活動]</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ── About ── -->
   <div class="about-strip fade-in">
-    <div class="about-title">关于我</div>
-    <div class="about-text">
-      我是一名<strong>开发者</strong>，对 Web 开发和产品设计都有兴趣。
-      平时喜欢做各种小工具，觉得「把一个想法跑起来」这件事本身就很有意思。
-      目前在寻找<strong>开发/产品方向的实习或全职机会</strong>，欢迎聊聊。
+    <div class="about-title">
+      <span data-en>About me</span>
+      <span data-ja>自己紹介</span>
     </div>
-    <a href="mailto:your@email.com" class="about-cta">联系我 →</a>
+    <div class="about-text">
+      <span data-en>
+        <strong>Full stack developer</strong> studying [Your Major] at [Your University].
+        I enjoy building things end-to-end — from designing APIs to shipping UIs.
+        Currently looking for <strong>internship or full-time roles</strong> in full stack or web development.
+      </span>
+      <span data-ja>
+        <strong>フルスタックエンジニア</strong>として〇〇大学で〇〇を学んでいます。
+        APIの設計からUIの実装まで、一気通貫でプロダクトを作ることが好きです。
+        現在、<strong>フルスタック・Web開発のインターン・就職先</strong>を探しています。
+      </span>
+    </div>
+    <a href="mailto:your@email.com" class="about-cta">
+      <span data-en>Get in touch →</span>
+      <span data-ja>連絡する →</span>
+    </a>
   </div>
 
-  <!-- Contact -->
+  <!-- ── Contact ── -->
   <div class="contact-section fade-in">
     <div class="section-head" style="padding-top:36px">
-      <span class="section-label">Contact</span>
+      <span class="section-label" data-en>Contact</span>
+      <span class="section-label" data-ja>連絡先</span>
       <div class="section-rule"></div>
     </div>
     <div class="contact-grid">
@@ -617,33 +724,66 @@ footer {
         <span class="contact-type">Email</span>
         <span class="contact-value">your@email.com</span>
       </a>
-      <a href="https://github.com/yourusername" class="contact-cell" target="_blank" rel="noopener">
+      <a href="https://github.com/ushi02" class="contact-cell" target="_blank" rel="noopener">
         <span class="contact-type">GitHub</span>
-        <span class="contact-value">@yourusername</span>
+        <span class="contact-value">@ushi02</span>
       </a>
-      <a href="https://linkedin.com/in/yourusername" class="contact-cell" target="_blank" rel="noopener">
+      <a href="https://linkedin.com/in/yourprofile" class="contact-cell" target="_blank" rel="noopener">
         <span class="contact-type">LinkedIn</span>
-        <span class="contact-value">Your Name</span>
+        <span class="contact-value">
+          <span data-en>Your Name</span>
+          <span data-ja>あなたの名前</span>
+        </span>
       </a>
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- ── Footer ── -->
   <footer class="fade-in">
-    <span class="footer-mark">Your Name · 2025</span>
-    <span>Handcrafted with HTML &amp; CSS</span>
+    <span class="footer-mark">ushi02 · 2025</span>
+    <span data-en>Handcrafted · HTML &amp; CSS</span>
+    <span data-ja>HTML &amp; CSS で制作</span>
   </footer>
 
-</div>
+</div><!-- /shell -->
 
 <script>
-  const els = document.querySelectorAll('.fade-in');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  els.forEach(el => io.observe(el));
+// ── Language switcher ──────────────────────────
+function setLang(lang) {
+  // Toggle html lang attribute (affects font)
+  document.documentElement.lang = lang === 'ja' ? 'ja' : 'en';
+
+  // Show/hide language spans
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.style.display = lang === 'en' ? '' : 'none';
+  });
+  document.querySelectorAll('[data-ja]').forEach(el => {
+    el.style.display = lang === 'ja' ? '' : 'none';
+  });
+
+  // Update button states
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // Persist choice
+  localStorage.setItem('lang', lang);
+}
+
+// Init: restore saved preference, default to EN
+(function() {
+  const saved = localStorage.getItem('lang') || 'en';
+  setLang(saved);
+})();
+
+// ── Scroll reveal ──────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 </script>
 
 </body>
