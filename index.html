@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ushi02 - Small Tools for Summer Internship</title>
+<title>Ushi - Web Projects</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400;700&display=swap" rel="stylesheet">
@@ -13,14 +13,16 @@
 html { scroll-behavior: smooth; }
 
 :root {
-  --ink:        #111010;
-  --ink-mid:    #555250;
-  --ink-light:  #999592;
-  --paper:      #faf9f7;
-  --paper-warm: #f3f0eb;
-  --rule:       #e2ddd8;
-  --accent:     #c8705a;
-  --accent-dim: #e8c4bb;
+  --ink:        #181512;
+  --ink-mid:    #5f5954;
+  --ink-light:  #9c938b;
+  --paper:      #f7f1e8;
+  --paper-warm: #efe5d6;
+  --rule:       #dccdbb;
+  --accent:     #b85c38;
+  --accent-dim: #e6b39f;
+  --olive:      #65724f;
+  --olive-dim:  #cfd5c0;
   --f-serif:    'Playfair Display', 'Noto Serif JP', Georgia, serif;
   --f-mono:     'DM Mono', 'Courier New', monospace;
   --max:        880px;
@@ -34,7 +36,10 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--f-mono);
   font-weight: 300;
-  background: var(--paper);
+  background:
+    radial-gradient(circle at top left, rgba(184,92,56,0.08), transparent 30%),
+    radial-gradient(circle at top right, rgba(101,114,79,0.08), transparent 26%),
+    linear-gradient(180deg, #fbf6ef 0%, var(--paper) 42%, #f5ede2 100%);
   color: var(--ink);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -48,6 +53,7 @@ a { color: inherit; text-decoration: none; }
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 var(--pad);
+  position: relative;
 }
 
 .lang-toggle {
@@ -58,8 +64,9 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--rule);
   border-radius: 4px;
   overflow: hidden;
-  background: var(--paper);
-  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  background: rgba(247,241,232,0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(43,30,18,0.08);
 }
 
 .lang-btn {
@@ -94,7 +101,7 @@ header {
   justify-content: space-between;
   align-items: baseline;
   padding-bottom: 20px;
-  border-bottom: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid rgba(24,21,18,0.9);
   gap: 16px;
 }
 
@@ -145,6 +152,33 @@ header {
 
 .intro-cell strong { font-weight: 400; color: var(--ink); }
 
+.quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.quick-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+
+.quick-link:hover {
+  background: var(--paper-warm);
+  border-color: var(--accent-dim);
+  color: var(--accent);
+}
+
 .status-dot {
   display: inline-block;
   width: 7px; height: 7px;
@@ -187,8 +221,8 @@ header {
 }
 
 .badge-link {
-  border: 1px solid #cfd7bf;
-  color: #6c7d45;
+  border: 1px solid var(--olive-dim);
+  color: var(--olive);
 }
 
 .projects {
@@ -202,7 +236,8 @@ header {
 @media (max-width: 540px) { .projects { grid-template-columns: 1fr; } }
 
 .project {
-  background: var(--paper);
+  background: rgba(251,248,243,0.82);
+  backdrop-filter: blur(4px);
   padding: 28px 26px 24px;
   display: flex;
   flex-direction: column;
@@ -221,7 +256,7 @@ header {
   transition: height 0.25s cubic-bezier(.22,1,.36,1);
 }
 
-.project.link-project::after { background: #6c7d45; }
+.project.link-project::after { background: var(--olive); }
 
 .project:hover { background: var(--paper-warm); }
 .project:hover::after { height: 100%; }
@@ -255,7 +290,7 @@ header {
 }
 
 .kind-solo { background: #fdf0ed; color: var(--accent); border: 1px solid var(--accent-dim); }
-.kind-link { background: #f1f4e8; color: #6c7d45; border: 1px solid #cfd7bf; }
+.kind-link { background: #f1f4e8; color: var(--olive); border: 1px solid var(--olive-dim); }
 
 .project-name {
   font-family: var(--f-serif);
@@ -268,7 +303,7 @@ header {
 }
 
 .project:hover .project-name { color: var(--accent); }
-.project.link-project:hover .project-name { color: #6c7d45; }
+.project.link-project:hover .project-name { color: var(--olive); }
 
 .project-role {
   font-size: 11px;
@@ -302,7 +337,7 @@ header {
 }
 
 .project:hover .tech-pill { border-color: var(--accent-dim); color: var(--accent); }
-.project.link-project:hover .tech-pill { border-color: #cfd7bf; color: #6c7d45; }
+.project.link-project:hover .tech-pill { border-color: var(--olive-dim); color: var(--olive); }
 
 .project-links {
   display: flex;
@@ -330,7 +365,7 @@ header {
 }
 
 .proj-link:hover { color: var(--accent); }
-.project.link-project .proj-link:hover { color: #6c7d45; }
+.project.link-project .proj-link:hover { color: var(--olive); }
 .proj-link:hover svg { transform: translate(2px,-2px); }
 
 .project-right {
@@ -352,12 +387,12 @@ header {
 }
 
 .project:hover .project-highlight { border-color: var(--accent); }
-.project.link-project:hover .project-highlight { border-color: #6c7d45; }
+.project.link-project:hover .project-highlight { border-color: var(--olive); }
 
 .about-strip {
   margin-top: 1px;
-  background: var(--ink);
-  color: var(--paper);
+  background: linear-gradient(135deg, #1d1915 0%, #27211b 50%, #1d1915 100%);
+  color: #f8f1e7;
   padding: 34px 40px;
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -379,7 +414,7 @@ header {
 
 .about-text {
   font-size: 12.5px;
-  color: rgba(250,249,247,0.52);
+  color: rgba(248,241,231,0.65);
   line-height: 1.9;
   font-weight: 300;
 }
@@ -395,7 +430,7 @@ header {
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--paper);
+  color: #f8f1e7;
   white-space: nowrap;
   transition: background 0.18s, border-color 0.18s;
 }
@@ -406,13 +441,13 @@ header {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 1px;
   background: var(--rule);
   border: 1px solid var(--rule);
 }
 
-@media (max-width: 540px) { .contact-grid { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .contact-grid { grid-template-columns: 1fr; } }
 
 .contact-cell {
   background: var(--paper);
@@ -498,38 +533,41 @@ footer {
 <div class="shell">
   <header>
     <div class="header-inner">
-      <div class="site-name">
-        ushi<em>02</em>
-      </div>
+      <div class="site-name">Ushi</div>
       <div class="header-meta">
-        <span data-en>Small tools · web experiments<br>Kyoto University Graduate School of Informatics</span>
-        <span data-ja>小さなツールと Web 実験<br>京都大学大学院 情報学研究科</span>
+        <span data-en>personal site<br>web projects and experiments</span>
+        <span data-ja>個人サイト<br>Web制作と実験</span>
       </div>
     </div>
 
     <div class="intro">
       <div class="intro-cell">
         <span class="status-dot"></span>
-        <span data-en><strong>Seeking a summer internship.</strong> I build practical small tools and lightweight web products, and I want to keep growing through product-oriented engineering work.</span>
-        <span data-ja><strong>夏季インターンを探しています。</strong> 実用的な小さなツールや軽量な Web プロダクトを作るのが好きで、プロダクト寄りの開発経験をさらに積みたいと考えています。</span>
+        <span data-en><strong>Hi, I'm Ushi.</strong> I make small web products and experiments, usually starting from a specific use case or a small annoyance I want to solve a bit more neatly.</span>
+        <span data-ja><strong>Ushi です。</strong> 小さめの Web プロダクトや実験をつくっています。何かはっきりした用途や、ちょっとした不便さから作り始めることが多いです。</span>
+        <div class="quick-links">
+          <a href="https://info-system-group3.vercel.app/" class="quick-link" target="_blank" rel="noopener">KUMACHAN</a>
+          <a href="https://speakerdeck.com/ushiiii/kumachan?slide=8" class="quick-link" target="_blank" rel="noopener">KUMACHAN Slides</a>
+          <a href="https://github.com/ushi02/mastodon_moyu" class="quick-link" target="_blank" rel="noopener">touchfish</a>
+        </div>
       </div>
       <div class="intro-cell">
-        <span data-en><strong>Kyoto University</strong>, Graduate School of Informatics, Social Informatics.<br>I do not call myself a full stack engineer yet, but I enjoy designing, building, and polishing tools end to end.</span>
-        <span data-ja><strong>京都大学大学院</strong> 情報学研究科 社会情報学。<br>まだ大げさにフルスタックエンジニアとは言いませんが、アイデアを形にして最後まで仕上げる開発が好きです。</span>
+        <span data-en><strong>I like building things end to end.</strong><br>From rough idea to interface and implementation, I enjoy shaping something small until it becomes clear, usable, and worth showing.</span>
+        <span data-ja><strong>考えるところから実装まで、ひと通り手を動かすのが好きです。</strong><br>ぼんやりしたアイデアを、ちゃんと使える形まで持っていく工程にいちばん面白さを感じます。</span>
       </div>
     </div>
   </header>
 
   <div class="section-head fade-in">
-    <span class="section-label" data-en>Selected Projects</span>
-    <span class="section-label" data-ja>制作したプロジェクト</span>
+    <span class="section-label" data-en>Tool Showcase</span>
+    <span class="section-label" data-ja>つくったもの</span>
     <div class="section-rule"></div>
-    <span class="section-badge badge-solo" data-en>Hands-on</span>
-    <span class="section-badge badge-solo" data-ja>個人制作</span>
+    <span class="section-badge badge-solo" data-en>Small but real</span>
+    <span class="section-badge badge-solo" data-ja>小さいけれど使える</span>
   </div>
 
   <div class="projects fade-in">
-    <a href="https://github.com/ushi02/mastodon_moyu" class="project wide" target="_blank" rel="noopener">
+    <div class="project wide">
       <div class="project-left">
         <span class="project-num">
           No. 01
@@ -537,35 +575,35 @@ footer {
           <span class="kind-tag kind-solo" data-ja>個人</span>
         </span>
         <div class="project-name">
-          <span data-en>mastodon_moyu</span>
-          <span data-ja>mastodon_moyu</span>
+          <span data-en>touchfish</span>
+          <span data-ja>touchfish</span>
         </div>
         <p class="project-desc">
-          <span data-en>A privacy-conscious Mastodon reader for situations like checking the timeline during class. Unlike opening Mastodon directly in a browser, it reduces the chance of exposing avatars, display names, and other personal details, while letting me quickly read the information stream.</span>
-          <span data-ja>授業中などに Mastodon のタイムラインを確認したい場面を想定した、プライバシー配慮型の閲覧ツールです。通常のブラウザで開く場合と違って、アイコンや表示名などの個人情報が目立ちにくく、情報の流れだけをすばやく確認できます。</span>
+          <span data-en>A small Mastodon reader built for moments when I want to check the flow of posts without opening the full social UI. The name is a pun on the Chinese phrase for slacking off, so it keeps a slightly playful tone while the UI itself stays discreet.</span>
+          <span data-ja>Mastodon をいつもの SNS 画面のまま開くのではなく、投稿の流れだけをさっと確認したいときのためのビューアです。名前の `touchfish` は、中国語の「摸鱼（slack off）」をもじったものです。少し遊び心はありつつ、画面自体は目立ちすぎないようにしています。</span>
         </p>
         <div class="project-tech">
           <span class="tech-pill">Mastodon</span>
           <span class="tech-pill">Privacy-first UI</span>
           <span class="tech-pill">Reader</span>
-          <span class="tech-pill">Shortcut Toggle</span>
+          <span class="tech-pill">Lightweight Tool</span>
         </div>
         <div class="project-links">
-          <span class="proj-link">
+          <a href="https://github.com/ushi02/mastodon_moyu" class="proj-link" target="_blank" rel="noopener">
             Repo
             <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
-          </span>
+          </a>
         </div>
       </div>
       <div class="project-right">
         <div class="project-highlight">
-          <span data-en>"A single shortcut can instantly hide or reopen the reader, so it stays lightweight and discreet to use."</span>
-          <span data-ja>「ショートカットキーで一瞬で閉じたり開いたりできるので、軽くて目立ちにくい閲覧体験にしています。」</span>
+          <span data-en>"I wanted something that keeps only the information stream and removes the visual noise around it."</span>
+          <span data-ja>「見たいのは投稿そのものなので、そのまわりのノイズはなるべく引いています。」</span>
         </div>
       </div>
-    </a>
+    </div>
 
-    <a href="https://info-system-group3.vercel.app/" class="project" target="_blank" rel="noopener">
+    <div class="project">
       <span class="project-num">
         No. 02
         <span class="kind-tag kind-solo" data-en>Team</span>
@@ -576,118 +614,30 @@ footer {
         <span data-ja>KUMACHAN</span>
       </div>
       <p class="project-role">
-        <span data-en>My role: frontend implementation, including the team screen, user registration screen, and Chrome extension.</span>
-        <span data-ja>担当：フロントエンド実装。チーム画面、ユーザー登録画面、Chrome 拡張機能を担当。</span>
+        <span data-en>My role: frontend implementation for the team page, sign-up flow, and Chrome extension.</span>
+        <span data-ja>担当：チーム画面、登録まわり、Chrome 拡張機能などのフロント実装。</span>
       </p>
       <p class="project-desc">
-        <span data-en>A team project that brings ranking mechanics into academic life to encourage assignment submission and class attendance. The product visualizes scores, matches students into weekly rank-based groups, and turns habit formation into a more competitive and engaging experience.</span>
-        <span data-ja>課題提出や授業出席を促すために、学業へランク戦の仕組みを持ち込んだチームプロジェクトです。スコアの可視化、同ランク帯での週次マッチング、昇格・降格の仕組みによって、学習習慣の継続を後押しします。</span>
+        <span data-en>A group project that brings ranked matchmaking into academic life. It tracks assignment and attendance behavior, groups five users in the same tier each week, and uses promotion or demotion to make habit-building feel more game-like.</span>
+        <span data-ja>学業にランク戦の感覚を持ち込むグループプロジェクトです。課題提出や出席の行動をスコア化し、毎週同じランク帯の 5 人で組み直すことで、習慣づけをゲームっぽく続けられるようにしています。</span>
       </p>
       <div class="project-tech">
         <span class="tech-pill">React + Vite</span>
         <span class="tech-pill">FastAPI</span>
         <span class="tech-pill">PostgreSQL</span>
-        <span class="tech-pill">Vercel</span>
+        <span class="tech-pill">KULMS Integration</span>
       </div>
       <div class="project-links">
-        <span class="proj-link">
+        <a href="https://info-system-group3.vercel.app/" class="proj-link" target="_blank" rel="noopener">
           Live Demo
           <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
-        </span>
-      </div>
-    </a>
-
-    <a href="https://github.com/ushi02" class="project" target="_blank" rel="noopener">
-      <span class="project-num">
-        No. 03
-        <span class="kind-tag kind-solo" data-en>Profile</span>
-        <span class="kind-tag kind-solo" data-ja>一覧</span>
-      </span>
-      <div class="project-name">
-        <span data-en>GitHub Profile</span>
-        <span data-ja>GitHub プロフィール</span>
-      </div>
-      <p class="project-desc">
-        <span data-en>A broader entry point to my repositories, experiments, and smaller utilities. This is the best place to browse the rest of my work beyond the featured projects above.</span>
-        <span data-ja>上の代表作以外も含めて、リポジトリや実験的な制作物、小さなユーティリティをまとめて見てもらえる入口です。</span>
-      </p>
-      <div class="project-tech">
-        <span class="tech-pill">GitHub</span>
-        <span class="tech-pill">Repositories</span>
-        <span class="tech-pill">Experiments</span>
-      </div>
-      <div class="project-links">
-        <span class="proj-link">
-          GitHub
+        </a>
+        <a href="https://speakerdeck.com/ushiiii/kumachan?slide=8" class="proj-link" target="_blank" rel="noopener">
+          Slides
           <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
-        </span>
+        </a>
       </div>
-    </a>
-  </div>
-
-  <div class="section-head fade-in">
-    <span class="section-label" data-en>Useful Links</span>
-    <span class="section-label" data-ja>リンク</span>
-    <div class="section-rule"></div>
-    <span class="section-badge badge-link" data-en>Direct Access</span>
-    <span class="section-badge badge-link" data-ja>直接リンク</span>
-  </div>
-
-  <div class="projects fade-in">
-    <a href="https://github.com/ushi02" class="project link-project" target="_blank" rel="noopener">
-      <span class="project-num">
-        Link 01
-        <span class="kind-tag kind-link">GitHub</span>
-      </span>
-      <div class="project-name">
-        <span data-en>All Repositories</span>
-        <span data-ja>全リポジトリ</span>
-      </div>
-      <p class="project-desc">
-        <span data-en>Recruiters can browse everything I have made, including unfinished experiments and polished tools.</span>
-        <span data-ja>完成度の高い作品だけでなく、試作や実験も含めて見てもらえる入口です。</span>
-      </p>
-    </a>
-
-    <a href="https://info-system-group3.vercel.app/" class="project link-project" target="_blank" rel="noopener">
-      <span class="project-num">
-        Link 02
-        <span class="kind-tag kind-link" data-en>Demo</span>
-        <span class="kind-tag kind-link" data-ja>デモ</span>
-      </span>
-      <div class="project-name">
-        <span data-en>Team Project Demo</span>
-        <span data-ja>チームプロジェクト デモ</span>
-      </div>
-      <p class="project-desc">
-        <span data-en>A direct link to the deployed KUMACHAN demo for anyone who wants to see the product first and the repository later.</span>
-        <span data-ja>まずは成果物そのものを見てほしい人向けに、KUMACHAN のデプロイ版へ直接飛べるリンクを置いています。</span>
-      </p>
-    </a>
-  </div>
-
-  <div class="about-strip fade-in">
-    <div class="about-title">
-      <span data-en>About me</span>
-      <span data-ja>自己紹介</span>
     </div>
-    <div class="about-text">
-      <span data-en>
-        I am a student in <strong>Social Informatics at Kyoto University Graduate School of Informatics</strong>.
-        I like building practical tools with clear use cases, from privacy-conscious readers for everyday situations to team products that try to change user behavior.
-        I am currently looking for a <strong>summer internship</strong> where I can contribute by building real product features.
-      </span>
-      <span data-ja>
-        <strong>京都大学大学院 情報学研究科 社会情報学</strong>で学んでいます。
-        日常のちょっとした不便を解決するプライバシー配慮型ツールから、行動変容を促すチーム開発のプロダクトまで、
-        用途がはっきりした実用的なものを丁寧に作るのが好きです。
-        現在は、実際のプロダクト開発に関われる<strong>夏季インターン</strong>を探しています。
-      </span>
-    </div>
-    <a href="https://github.com/ushi02/mastodon_moyu" class="about-cta" target="_blank" rel="noopener">
-      <span data-en>See my work →</span>
-      <span data-ja>制作物を見る →</span>
-    </a>
   </div>
 
   <div class="contact-section fade-in">
@@ -697,31 +647,21 @@ footer {
       <div class="section-rule"></div>
     </div>
     <div class="contact-grid">
-      <a href="mailto:your@email.com" class="contact-cell">
+      <a href="mailto:zhangyushi02@gmail.com" class="contact-cell">
         <span class="contact-type">Email</span>
-        <span class="contact-value">your@email.com</span>
+        <span class="contact-value">zhangyushi02@gmail.com</span>
       </a>
       <a href="https://github.com/ushi02" class="contact-cell" target="_blank" rel="noopener">
         <span class="contact-type">GitHub</span>
         <span class="contact-value">@ushi02</span>
       </a>
-      <a href="https://info-system-group3.vercel.app/" class="contact-cell" target="_blank" rel="noopener">
-        <span class="contact-type">
-          <span data-en>Main Link</span>
-          <span data-ja>メインリンク</span>
-        </span>
-        <span class="contact-value">
-          <span data-en>info-system-group3.vercel.app</span>
-          <span data-ja>info-system-group3.vercel.app</span>
-        </span>
-      </a>
     </div>
   </div>
 
   <footer class="fade-in">
-    <span class="footer-mark">ushi02 · 2026</span>
-    <span data-en>Portfolio for summer internship applications</span>
-    <span data-ja>夏季インターン応募用ポートフォリオ</span>
+    <span class="footer-mark">Ushi · 2026</span>
+    <span data-en>Selected web projects</span>
+    <span data-ja>Web制作の記録</span>
   </footer>
 </div>
 
