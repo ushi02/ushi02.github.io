@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Name — Full Stack Developer</title>
+<title>ushi02 - Small Tools for Summer Internship</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400;700&display=swap" rel="stylesheet">
@@ -27,7 +27,6 @@ html { scroll-behavior: smooth; }
   --pad:        clamp(24px, 5vw, 64px);
 }
 
-/* Japanese mode — swap serif font */
 [lang="ja"] {
   --f-serif: 'Noto Serif JP', Georgia, serif;
 }
@@ -51,7 +50,6 @@ a { color: inherit; text-decoration: none; }
   padding: 0 var(--pad);
 }
 
-/* ── Language toggle ── */
 .lang-toggle {
   position: fixed;
   top: 20px; right: 24px;
@@ -84,10 +82,8 @@ a { color: inherit; text-decoration: none; }
 
 .lang-btn:not(.active):hover { background: var(--paper-warm); }
 
-/* ── i18n ── */
 [data-en], [data-ja] { display: inline; }
 
-/* ── Header ── */
 header {
   padding: 56px 0 0;
   animation: up 0.7s cubic-bezier(.22,1,.36,1) both;
@@ -122,7 +118,6 @@ header {
   flex-shrink: 0;
 }
 
-/* ── Intro ── */
 .intro {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -160,7 +155,6 @@ header {
   animation: pulse 2.5s ease-in-out infinite;
 }
 
-/* ── Section head ── */
 .section-head {
   display: flex;
   align-items: center;
@@ -178,7 +172,6 @@ header {
 
 .section-rule { flex: 1; height: 1px; background: var(--rule); }
 
-/* ── Section badge (Solo / Team) ── */
 .section-badge {
   font-size: 10px;
   letter-spacing: 1.5px;
@@ -193,12 +186,11 @@ header {
   color: var(--accent);
 }
 
-.badge-team {
-  border: 1px solid #b5c9e8;
-  color: #3a6fa8;
+.badge-link {
+  border: 1px solid #cfd7bf;
+  color: #6c7d45;
 }
 
-/* ── Projects grid ── */
 .projects {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -220,7 +212,6 @@ header {
   transition: background 0.18s;
 }
 
-/* left accent bar */
 .project::after {
   content: '';
   position: absolute;
@@ -230,12 +221,11 @@ header {
   transition: height 0.25s cubic-bezier(.22,1,.36,1);
 }
 
-.project.team-project::after { background: #3a6fa8; }
+.project.link-project::after { background: #6c7d45; }
 
 .project:hover { background: var(--paper-warm); }
 .project:hover::after { height: 100%; }
 
-/* Featured wide card */
 .project.wide {
   grid-column: 1 / -1;
   display: grid;
@@ -265,7 +255,7 @@ header {
 }
 
 .kind-solo { background: #fdf0ed; color: var(--accent); border: 1px solid var(--accent-dim); }
-.kind-team { background: #edf3fb; color: #3a6fa8; border: 1px solid #b5c9e8; }
+.kind-link { background: #f1f4e8; color: #6c7d45; border: 1px solid #cfd7bf; }
 
 .project-name {
   font-family: var(--f-serif);
@@ -278,7 +268,7 @@ header {
 }
 
 .project:hover .project-name { color: var(--accent); }
-.project.team-project:hover .project-name { color: #3a6fa8; }
+.project.link-project:hover .project-name { color: #6c7d45; }
 
 .project-role {
   font-size: 11px;
@@ -312,12 +302,13 @@ header {
 }
 
 .project:hover .tech-pill { border-color: var(--accent-dim); color: var(--accent); }
-.project.team-project:hover .tech-pill { border-color: #b5c9e8; color: #3a6fa8; }
+.project.link-project:hover .tech-pill { border-color: #cfd7bf; color: #6c7d45; }
 
 .project-links {
   display: flex;
   gap: 16px;
   margin-top: 6px;
+  flex-wrap: wrap;
 }
 
 .proj-link {
@@ -339,9 +330,9 @@ header {
 }
 
 .proj-link:hover { color: var(--accent); }
+.project.link-project .proj-link:hover { color: #6c7d45; }
 .proj-link:hover svg { transform: translate(2px,-2px); }
 
-/* Wide card right col */
 .project-right {
   display: flex;
   flex-direction: column;
@@ -361,16 +352,8 @@ header {
 }
 
 .project:hover .project-highlight { border-color: var(--accent); }
+.project.link-project:hover .project-highlight { border-color: #6c7d45; }
 
-.project-members {
-  font-size: 11px;
-  color: var(--ink-light);
-  line-height: 1.8;
-}
-
-.project-members strong { color: var(--ink-mid); font-weight: 400; }
-
-/* ── About strip ── */
 .about-strip {
   margin-top: 1px;
   background: var(--ink);
@@ -419,7 +402,6 @@ header {
 
 .about-cta:hover { background: var(--accent); border-color: var(--accent); }
 
-/* ── Contact ── */
 .contact-section { padding: 44px 0 0; }
 
 .contact-grid {
@@ -460,7 +442,6 @@ header {
 
 .contact-cell:hover .contact-value { color: var(--accent); }
 
-/* ── Footer ── */
 footer {
   margin-top: 44px;
   padding: 18px 0 48px;
@@ -470,6 +451,11 @@ footer {
   border-top: 1px solid var(--rule);
   font-size: 11px;
   color: var(--ink-light);
+  gap: 16px;
+}
+
+@media (max-width: 540px) {
+  footer { flex-direction: column; align-items: flex-start; }
 }
 
 .footer-mark {
@@ -479,11 +465,11 @@ footer {
   color: var(--ink-mid);
 }
 
-/* ── Animations ── */
 @keyframes up {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
@@ -494,6 +480,7 @@ footer {
   transform: translateY(12px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
+
 .fade-in.visible { opacity: 1; transform: none; }
 
 ::-webkit-scrollbar { width: 5px; }
@@ -503,113 +490,131 @@ footer {
 </head>
 <body>
 
-<!-- ── Language toggle ── -->
 <div class="lang-toggle" role="group" aria-label="Language switcher">
   <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-  <button class="lang-btn"        data-lang="ja" onclick="setLang('ja')">JA</button>
+  <button class="lang-btn" data-lang="ja" onclick="setLang('ja')">JA</button>
 </div>
 
 <div class="shell">
-
-  <!-- ── Header ── -->
   <header>
     <div class="header-inner">
       <div class="site-name">
-        Your <em>Name</em>
+        ushi<em>02</em>
       </div>
       <div class="header-meta">
-        <span data-en>Full Stack Developer<br>University Name · CS / [Your Major]</span>
-        <span data-ja>フルスタックエンジニア<br>〇〇大学 · 〇〇学部</span>
+        <span data-en>Small tools · web experiments<br>Kyoto University Graduate School of Informatics</span>
+        <span data-ja>小さなツールと Web 実験<br>京都大学大学院 情報学研究科</span>
       </div>
     </div>
 
     <div class="intro">
       <div class="intro-cell">
         <span class="status-dot"></span>
-        <span data-en><strong>Open to opportunities</strong> — seeking internship or full-time roles in full stack development.</span>
-        <span data-ja><strong>求職中</strong> — フルスタック開発のインターンシップ・就職先を探しています。</span>
+        <span data-en><strong>Seeking a summer internship.</strong> I build practical small tools and lightweight web products, and I want to keep growing through product-oriented engineering work.</span>
+        <span data-ja><strong>夏季インターンを探しています。</strong> 実用的な小さなツールや軽量な Web プロダクトを作るのが好きで、プロダクト寄りの開発経験をさらに積みたいと考えています。</span>
       </div>
       <div class="intro-cell">
-        <span data-en>React · Node.js · Python · PostgreSQL · Docker<br>Comfortable across the stack, from UI to deployment.</span>
-        <span data-ja>React · Node.js · Python · PostgreSQL · Docker<br>フロントからデプロイまで幅広く対応できます。</span>
+        <span data-en><strong>Kyoto University</strong>, Graduate School of Informatics, Social Informatics.<br>I do not call myself a full stack engineer yet, but I enjoy designing, building, and polishing tools end to end.</span>
+        <span data-ja><strong>京都大学大学院</strong> 情報学研究科 社会情報学。<br>まだ大げさにフルスタックエンジニアとは言いませんが、アイデアを形にして最後まで仕上げる開発が好きです。</span>
       </div>
     </div>
   </header>
 
-  <!-- ══════════════════════════════════════
-       SOLO PROJECTS
-  ══════════════════════════════════════ -->
   <div class="section-head fade-in">
-    <span class="section-label" data-en>Solo Projects</span>
-    <span class="section-label" data-ja>個人プロジェクト</span>
+    <span class="section-label" data-en>Selected Projects</span>
+    <span class="section-label" data-ja>制作したプロジェクト</span>
     <div class="section-rule"></div>
-    <span class="section-badge badge-solo" data-en>Personal</span>
+    <span class="section-badge badge-solo" data-en>Hands-on</span>
     <span class="section-badge badge-solo" data-ja>個人制作</span>
   </div>
 
   <div class="projects fade-in">
-
-    <!-- Solo #1 — featured wide card -->
-    <a href="https://github.com/ushi02/YOUR-REPO-1" class="project wide" target="_blank" rel="noopener">
+    <a href="https://github.com/ushi02/mastodon_moyu" class="project wide" target="_blank" rel="noopener">
       <div class="project-left">
         <span class="project-num">
           No. 01
-          <span class="kind-tag kind-solo" data-en>Solo</span>
+          <span class="kind-tag kind-solo" data-en>Personal</span>
           <span class="kind-tag kind-solo" data-ja>個人</span>
         </span>
         <div class="project-name">
-          <span data-en>Project Name One</span>
-          <span data-ja>プロジェクト名 一</span>
+          <span data-en>mastodon_moyu</span>
+          <span data-ja>mastodon_moyu</span>
         </div>
         <p class="project-desc">
-          <span data-en>Describe what this project does in 1–2 sentences. What problem does it solve? What's the most interesting part? Be specific — "a web app" is boring, "a tool that does X for Y people" is not.</span>
-          <span data-ja>このプロジェクトが何をするものか1〜2文で説明してください。どんな課題を解決しますか？何が面白い点ですか？具体的に書くと良い印象を与えます。</span>
+          <span data-en>A privacy-conscious Mastodon reader for situations like checking the timeline during class. Unlike opening Mastodon directly in a browser, it reduces the chance of exposing avatars, display names, and other personal details, while letting me quickly read the information stream.</span>
+          <span data-ja>授業中などに Mastodon のタイムラインを確認したい場面を想定した、プライバシー配慮型の閲覧ツールです。通常のブラウザで開く場合と違って、アイコンや表示名などの個人情報が目立ちにくく、情報の流れだけをすばやく確認できます。</span>
         </p>
         <div class="project-tech">
-          <span class="tech-pill">React</span>
-          <span class="tech-pill">Node.js</span>
-          <span class="tech-pill">PostgreSQL</span>
-          <span class="tech-pill">REST API</span>
+          <span class="tech-pill">Mastodon</span>
+          <span class="tech-pill">Privacy-first UI</span>
+          <span class="tech-pill">Reader</span>
+          <span class="tech-pill">Shortcut Toggle</span>
         </div>
         <div class="project-links">
           <span class="proj-link">
-            GitHub
-            <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
-          </span>
-          <span class="proj-link">
-            <span data-en>Live Demo</span>
-            <span data-ja>デモ</span>
+            Repo
             <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
           </span>
         </div>
       </div>
       <div class="project-right">
         <div class="project-highlight">
-          <span data-en>"Write one sentence that captures the most memorable thing about this project — a technical challenge you solved, an insight you gained, or what makes it unique."</span>
-          <span data-ja>「このプロジェクトで最も印象的なこと、解決した技術的な課題、または得た気づきを一文で表現してください。」</span>
+          <span data-en>"A single shortcut can instantly hide or reopen the reader, so it stays lightweight and discreet to use."</span>
+          <span data-ja>「ショートカットキーで一瞬で閉じたり開いたりできるので、軽くて目立ちにくい閲覧体験にしています。」</span>
         </div>
       </div>
     </a>
 
-    <!-- Solo #2 -->
-    <a href="https://github.com/ushi02/YOUR-REPO-2" class="project" target="_blank" rel="noopener" style="grid-column: 1 / -1;">
+    <a href="https://info-system-group3.vercel.app/" class="project" target="_blank" rel="noopener">
       <span class="project-num">
         No. 02
-        <span class="kind-tag kind-solo" data-en>Solo</span>
-        <span class="kind-tag kind-solo" data-ja>個人</span>
+        <span class="kind-tag kind-solo" data-en>Team</span>
+        <span class="kind-tag kind-solo" data-ja>チーム</span>
       </span>
       <div class="project-name">
-        <span data-en>Project Name Two</span>
-        <span data-ja>プロジェクト名 二</span>
+        <span data-en>KUMACHAN</span>
+        <span data-ja>KUMACHAN</span>
       </div>
+      <p class="project-role">
+        <span data-en>My role: frontend implementation, including the team screen, user registration screen, and Chrome extension.</span>
+        <span data-ja>担当：フロントエンド実装。チーム画面、ユーザー登録画面、Chrome 拡張機能を担当。</span>
+      </p>
       <p class="project-desc">
-        <span data-en>Short description — what it does, what stack you used, and why you built it. 1–2 sentences is plenty.</span>
-        <span data-ja>プロジェクトの概要を1〜2文で。何をするもので、なぜ作ったのかを書いてください。</span>
+        <span data-en>A team project that brings ranking mechanics into academic life to encourage assignment submission and class attendance. The product visualizes scores, matches students into weekly rank-based groups, and turns habit formation into a more competitive and engaging experience.</span>
+        <span data-ja>課題提出や授業出席を促すために、学業へランク戦の仕組みを持ち込んだチームプロジェクトです。スコアの可視化、同ランク帯での週次マッチング、昇格・降格の仕組みによって、学習習慣の継続を後押しします。</span>
       </p>
       <div class="project-tech">
-        <span class="tech-pill">Python</span>
+        <span class="tech-pill">React + Vite</span>
         <span class="tech-pill">FastAPI</span>
-        <span class="tech-pill">Docker</span>
+        <span class="tech-pill">PostgreSQL</span>
+        <span class="tech-pill">Vercel</span>
+      </div>
+      <div class="project-links">
+        <span class="proj-link">
+          Live Demo
+          <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <a href="https://github.com/ushi02" class="project" target="_blank" rel="noopener">
+      <span class="project-num">
+        No. 03
+        <span class="kind-tag kind-solo" data-en>Profile</span>
+        <span class="kind-tag kind-solo" data-ja>一覧</span>
+      </span>
+      <div class="project-name">
+        <span data-en>GitHub Profile</span>
+        <span data-ja>GitHub プロフィール</span>
+      </div>
+      <p class="project-desc">
+        <span data-en>A broader entry point to my repositories, experiments, and smaller utilities. This is the best place to browse the rest of my work beyond the featured projects above.</span>
+        <span data-ja>上の代表作以外も含めて、リポジトリや実験的な制作物、小さなユーティリティをまとめて見てもらえる入口です。</span>
+      </p>
+      <div class="project-tech">
+        <span class="tech-pill">GitHub</span>
+        <span class="tech-pill">Repositories</span>
+        <span class="tech-pill">Experiments</span>
       </div>
       <div class="project-links">
         <span class="proj-link">
@@ -618,77 +623,49 @@ footer {
         </span>
       </div>
     </a>
-
   </div>
 
-  <!-- ══════════════════════════════════════
-       TEAM PROJECTS
-  ══════════════════════════════════════ -->
   <div class="section-head fade-in">
-    <span class="section-label" data-en>Team Projects</span>
-    <span class="section-label" data-ja>チームプロジェクト</span>
+    <span class="section-label" data-en>Useful Links</span>
+    <span class="section-label" data-ja>リンク</span>
     <div class="section-rule"></div>
-    <span class="section-badge badge-team" data-en>Collaborative</span>
-    <span class="section-badge badge-team" data-ja>共同制作</span>
+    <span class="section-badge badge-link" data-en>Direct Access</span>
+    <span class="section-badge badge-link" data-ja>直接リンク</span>
   </div>
 
   <div class="projects fade-in">
-
-    <!-- Team #1 — wide card -->
-    <a href="https://github.com/ushi02/YOUR-TEAM-REPO" class="project wide team-project" target="_blank" rel="noopener">
-      <div class="project-left">
-        <span class="project-num">
-          No. 03
-          <span class="kind-tag kind-team" data-en>Team</span>
-          <span class="kind-tag kind-team" data-ja>チーム</span>
-        </span>
-        <div class="project-name">
-          <span data-en>Team Project Name</span>
-          <span data-ja>チームプロジェクト名</span>
-        </div>
-        <p class="project-role">
-          <span data-en>Your role: [e.g. Frontend lead / Backend / Full stack]</span>
-          <span data-ja>担当：[例 フロントエンドリード / バックエンド / フルスタック]</span>
-        </p>
-        <p class="project-desc">
-          <span data-en>Describe the project and what your team built. Then mention your specific contribution — what features did you own? What decisions did you make? Interviewers care about what YOU did inside a team project.</span>
-          <span data-ja>プロジェクトの概要と、チームで何を作ったかを説明してください。次に、あなた自身の貢献を具体的に書いてください。どの機能を担当しましたか？面接官はチームの中であなたが何をしたかを重視します。</span>
-        </p>
-        <div class="project-tech">
-          <span class="tech-pill">Next.js</span>
-          <span class="tech-pill">TypeScript</span>
-          <span class="tech-pill">Prisma</span>
-          <span class="tech-pill">Vercel</span>
-        </div>
-        <div class="project-links">
-          <span class="proj-link">
-            GitHub
-            <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
-          </span>
-          <span class="proj-link">
-            <span data-en>Live Demo</span>
-            <span data-ja>デモ</span>
-            <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
-          </span>
-        </div>
+    <a href="https://github.com/ushi02" class="project link-project" target="_blank" rel="noopener">
+      <span class="project-num">
+        Link 01
+        <span class="kind-tag kind-link">GitHub</span>
+      </span>
+      <div class="project-name">
+        <span data-en>All Repositories</span>
+        <span data-ja>全リポジトリ</span>
       </div>
-      <div class="project-right">
-        <div class="project-highlight" style="border-color:#b5c9e8">
-          <span data-en>"What was your specific contribution that you're most proud of? A hard problem you solved, a design decision you drove, or something the team wouldn't have built without you."</span>
-          <span data-ja>「チームの中で最も誇れる自分の貢献を一文で。あなたがいなければできなかったことは何ですか？」</span>
-        </div>
-        <div class="project-members">
-          <strong data-en>Team:</strong>
-          <strong data-ja>チーム：</strong>
-          <span data-en> [N] members · [Course / Hackathon / Side project]</span>
-          <span data-ja>　メンバー [N]人 · [授業 / ハッカソン / 課外活動]</span>
-        </div>
-      </div>
+      <p class="project-desc">
+        <span data-en>Recruiters can browse everything I have made, including unfinished experiments and polished tools.</span>
+        <span data-ja>完成度の高い作品だけでなく、試作や実験も含めて見てもらえる入口です。</span>
+      </p>
     </a>
 
+    <a href="https://info-system-group3.vercel.app/" class="project link-project" target="_blank" rel="noopener">
+      <span class="project-num">
+        Link 02
+        <span class="kind-tag kind-link" data-en>Demo</span>
+        <span class="kind-tag kind-link" data-ja>デモ</span>
+      </span>
+      <div class="project-name">
+        <span data-en>Team Project Demo</span>
+        <span data-ja>チームプロジェクト デモ</span>
+      </div>
+      <p class="project-desc">
+        <span data-en>A direct link to the deployed KUMACHAN demo for anyone who wants to see the product first and the repository later.</span>
+        <span data-ja>まずは成果物そのものを見てほしい人向けに、KUMACHAN のデプロイ版へ直接飛べるリンクを置いています。</span>
+      </p>
+    </a>
   </div>
 
-  <!-- ── About ── -->
   <div class="about-strip fade-in">
     <div class="about-title">
       <span data-en>About me</span>
@@ -696,23 +673,23 @@ footer {
     </div>
     <div class="about-text">
       <span data-en>
-        <strong>Full stack developer</strong> studying [Your Major] at [Your University].
-        I enjoy building things end-to-end — from designing APIs to shipping UIs.
-        Currently looking for <strong>internship or full-time roles</strong> in full stack or web development.
+        I am a student in <strong>Social Informatics at Kyoto University Graduate School of Informatics</strong>.
+        I like building practical tools with clear use cases, from privacy-conscious readers for everyday situations to team products that try to change user behavior.
+        I am currently looking for a <strong>summer internship</strong> where I can contribute by building real product features.
       </span>
       <span data-ja>
-        <strong>フルスタックエンジニア</strong>として〇〇大学で〇〇を学んでいます。
-        APIの設計からUIの実装まで、一気通貫でプロダクトを作ることが好きです。
-        現在、<strong>フルスタック・Web開発のインターン・就職先</strong>を探しています。
+        <strong>京都大学大学院 情報学研究科 社会情報学</strong>で学んでいます。
+        日常のちょっとした不便を解決するプライバシー配慮型ツールから、行動変容を促すチーム開発のプロダクトまで、
+        用途がはっきりした実用的なものを丁寧に作るのが好きです。
+        現在は、実際のプロダクト開発に関われる<strong>夏季インターン</strong>を探しています。
       </span>
     </div>
-    <a href="mailto:your@email.com" class="about-cta">
-      <span data-en>Get in touch →</span>
-      <span data-ja>連絡する →</span>
+    <a href="https://github.com/ushi02/mastodon_moyu" class="about-cta" target="_blank" rel="noopener">
+      <span data-en>See my work →</span>
+      <span data-ja>制作物を見る →</span>
     </a>
   </div>
 
-  <!-- ── Contact ── -->
   <div class="contact-section fade-in">
     <div class="section-head" style="padding-top:36px">
       <span class="section-label" data-en>Contact</span>
@@ -728,32 +705,30 @@ footer {
         <span class="contact-type">GitHub</span>
         <span class="contact-value">@ushi02</span>
       </a>
-      <a href="https://linkedin.com/in/yourprofile" class="contact-cell" target="_blank" rel="noopener">
-        <span class="contact-type">LinkedIn</span>
+      <a href="https://info-system-group3.vercel.app/" class="contact-cell" target="_blank" rel="noopener">
+        <span class="contact-type">
+          <span data-en>Main Link</span>
+          <span data-ja>メインリンク</span>
+        </span>
         <span class="contact-value">
-          <span data-en>Your Name</span>
-          <span data-ja>あなたの名前</span>
+          <span data-en>info-system-group3.vercel.app</span>
+          <span data-ja>info-system-group3.vercel.app</span>
         </span>
       </a>
     </div>
   </div>
 
-  <!-- ── Footer ── -->
   <footer class="fade-in">
-    <span class="footer-mark">ushi02 · 2025</span>
-    <span data-en>Handcrafted · HTML &amp; CSS</span>
-    <span data-ja>HTML &amp; CSS で制作</span>
+    <span class="footer-mark">ushi02 · 2026</span>
+    <span data-en>Portfolio for summer internship applications</span>
+    <span data-ja>夏季インターン応募用ポートフォリオ</span>
   </footer>
-
-</div><!-- /shell -->
+</div>
 
 <script>
-// ── Language switcher ──────────────────────────
 function setLang(lang) {
-  // Toggle html lang attribute (affects font)
   document.documentElement.lang = lang === 'ja' ? 'ja' : 'en';
 
-  // Show/hide language spans
   document.querySelectorAll('[data-en]').forEach(el => {
     el.style.display = lang === 'en' ? '' : 'none';
   });
@@ -761,25 +736,24 @@ function setLang(lang) {
     el.style.display = lang === 'ja' ? '' : 'none';
   });
 
-  // Update button states
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 
-  // Persist choice
   localStorage.setItem('lang', lang);
 }
 
-// Init: restore saved preference, default to EN
 (function() {
   const saved = localStorage.getItem('lang') || 'en';
   setLang(saved);
 })();
 
-// ── Scroll reveal ──────────────────────────────
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
   });
 }, { threshold: 0.08 });
 
